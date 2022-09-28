@@ -23,7 +23,20 @@
 </style>
 
 <!-- Note to teacher: please accept my steam friend request 🙏 -->
+
 <body>
+
+    <!-- idk how else to use sessionstorage so -->
+    <script>
+        sessionStorage.setItem('bgColor', 'light')
+    </script>
+
+    <header>
+        <h1 class="label">
+            Form Submission
+        </h1>
+    </header>
+
     <fieldset class=field>
         <legend class="legend">Change the theme button</legend>
         <div>
@@ -44,33 +57,30 @@
                 <input type="text" name="email" id="email">
             </div>
             <div>
-                <label class="label" for="phone">Phone Number:</label>
+                <label class="label" for="phone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}">Phone Number:</label>
                 <br>
-                <input type="text" name="phone" id="phone">
+                <input type="tel" name="phone" id="phone">
             </div>
         </fieldset>
 
         <fieldset class=field>
             <legend class="legend">What is the purpose of contact?</legend>
             <div>
-                <input type="checkbox" name="checkbox" id="ch1">
-                <label class="label" for="ch1">Career Opportunity</label>
+                <br>
+                <label class="label" for="select">Please select one</label>
+                <br>
+                <select name="select" id="select">
+                    <option value="op0">General Query</option>
+                    <option value="op1">Business Proposal</option>
+                    <option value="op2">Feedback</option>
+                    <option value="op3">Complaint</option>
+                    <option value="op4">Compliment 😳</option>
+                </select>
             </div>
             <div>
-                <input type="checkbox" name="checkbox" id="ch2">
-                <label class="label" for="ch2">Business Proposal</label>
-            </div>
-            <div>
-                <input type="checkbox" name="checkbox" id="ch3">
-                <label class="label" for="ch3">General Query</label>
-            </div>
-            <div>
-                <input type="checkbox" name="checkbox" id="ch4">
-                <label class="label" for="ch4">Complaint</label>
-            </div>
-            <div>
-                <input type="checkbox" name="checkbox" id="ch5">
-                <label class="label" for="ch5">Compliment 😳</label>
+                <br>
+                <p class="label">Message you want to convey:</p>
+                <textarea name="bigtext" id="bigtext" cols="30" rows="10"></textarea>
             </div>
         </fieldset>
         <br>
@@ -81,7 +91,7 @@
     <script>
         function changeTheme() {
             // if the white jpeg is active, change to black png and vice versa; very primative
-            if(document.getElementsByTagName('style')[0].innerHTML.includes("jpeg")) {
+            if (sessionStorage.getItem('bgColor') == 'light') {
                 document.body.style.backgroundImage = 'url(background2.png)';
 
                 // change all fieldset background colors
@@ -101,6 +111,31 @@
                 label.forEach(label => {
                     label.style.color = 'grey';
                 });
+
+                sessionStorage.setItem('bgColor', 'dark')
+            }
+            else {
+                document.body.style.backgroundImage = 'url(background.jpeg)';
+
+                // change all fieldset background colors
+                const field = document.querySelectorAll('.field');
+                field.forEach(field => {
+                    field.style.backgroundColor = 'white';
+                });
+
+                // change all legend font colors to white
+                const legend = document.querySelectorAll('.legend');
+                legend.forEach(legend => {
+                    legend.style.color = 'black';
+                })
+
+                // change all label font colors to white
+                const label = document.querySelectorAll('.label');
+                label.forEach(label => {
+                    label.style.color = 'black';
+                });
+
+                sessionStorage.setItem('bgColor', 'light')
             }
         }
     </script>

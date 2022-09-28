@@ -1,21 +1,67 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Thanks</title>
-    </head>
 
-    <body>
-        <main>
-            <!-- 
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Thanks</title>
+</head>
+
+<style>
+    .center {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width: 50%;
+    }
+</style>
+
+<body>
+    <main>
+
+        <!-- determines if the previous page was in dark mode or not, changes accordingly -->
+        <script>
+            if (sessionStorage.getItem('bgColor') == 'dark') {
+                document.body.style.backgroundImage = 'url(background2.png)';
+
+                // change all fieldset background colors
+                const field = document.querySelectorAll('.field');
+                field.forEach(field => {
+                    field.style.backgroundColor = 'black';
+                });
+
+                // change all legend font colors to white
+                const legend = document.querySelectorAll('.legend');
+                legend.forEach(legend => {
+                    legend.style.color = 'grey';
+                })
+
+                // change all label font colors to white
+                const label = document.querySelectorAll('.label');
+                label.forEach(label => {
+                    label.style.color = 'grey';
+                });
+
+                sessionStorage.setItem('bgColor', 'dark')
+            }
+            else {
+                document.body.style.backgroundImage = 'url(background.jpeg)';
+            }
+        </script>
+        <!-- 
                 OBJECTIVE:
                 Write a thank you page the Netlify
                 can render to provide information to
                 the user that we've received their submission.
              -->
-             thanks bro
-        </main>
-    </body>
+        <header>
+            <h1 style="text-align: center; color: rgb(223, 223, 115);">Thanks for your submission!</h1>
+        </header>
+
+        <img src="https://media2.giphy.com/media/dalJ0CpF7hwmN1nZXe/giphy.gif?cid=ecf05e473jli1z1dn4b6d6jdc2lvjrcpq3yu6uj4b84wwmp2&rid=giphy.gif&ct=g"
+            alt="" class="center">
+    </main>
+</body>
+
 </html>
