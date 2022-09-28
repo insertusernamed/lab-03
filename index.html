@@ -13,7 +13,7 @@
     }
 
     fieldset {
-        background-color: rgb(255, 255, 255);
+        background-color: white;
     }
 
     legend {
@@ -24,52 +24,86 @@
 
 <!-- Note to teacher: please accept my steam friend request 🙏 -->
 <body>
+    <fieldset class=field>
+        <legend class="legend">Change the theme button</legend>
+        <div>
+            <button type="button" onclick="changeTheme()">Change Theme</button>
+        </div>
+    </fieldset>
     <form method='get' action="./thanks.html">
-        <fieldset>
-            <legend>User Information</legend>
+        <fieldset class=field>
+            <legend class="legend">User Information</legend>
             <div>
-                <label for="firstName">Name:</label>
+                <label class="label" for="firstName">Name:</label>
                 <br>
                 <input type="text" name="name" id="name">
             </div>
             <div>
-                <label for="email">Email:</label>
+                <label class="label" for="email">Email:</label>
                 <br>
                 <input type="text" name="email" id="email">
             </div>
             <div>
-                <label for="phone">Phone Number:</label>
+                <label class="label" for="phone">Phone Number:</label>
                 <br>
                 <input type="text" name="phone" id="phone">
             </div>
         </fieldset>
 
-        <fieldset>
-            <legend>What is the purpose of contact?</legend>
+        <fieldset class=field>
+            <legend class="legend">What is the purpose of contact?</legend>
             <div>
                 <input type="checkbox" name="checkbox" id="ch1">
-                <label for="ch1">Career Opportunity</label>
+                <label class="label" for="ch1">Career Opportunity</label>
             </div>
             <div>
                 <input type="checkbox" name="checkbox" id="ch2">
-                <label for="ch2">Business Proposal</label>
+                <label class="label" for="ch2">Business Proposal</label>
             </div>
             <div>
                 <input type="checkbox" name="checkbox" id="ch3">
-                <label for="ch3">General Query</label>
+                <label class="label" for="ch3">General Query</label>
             </div>
             <div>
                 <input type="checkbox" name="checkbox" id="ch4">
-                <label for="ch4">Complaint</label>
+                <label class="label" for="ch4">Complaint</label>
             </div>
             <div>
                 <input type="checkbox" name="checkbox" id="ch5">
-                <label for="ch5">Compliment 😳</label>
+                <label class="label" for="ch5">Compliment 😳</label>
             </div>
         </fieldset>
         <br>
         <input type="submit" value="Submit" style="width:10%;height:10%; background-color: rgb(250, 250, 250);">
     </form>
+
+    <!-- First time messing around with javascript inside html -->
+    <script>
+        function changeTheme() {
+            // if the white jpeg is active, change to black png and vice versa; very primative
+            if(document.getElementsByTagName('style')[0].innerHTML.includes("jpeg")) {
+                document.body.style.backgroundImage = 'url(background2.png)';
+
+                // change all fieldset background colors
+                const field = document.querySelectorAll('.field');
+                field.forEach(field => {
+                    field.style.backgroundColor = 'black';
+                });
+
+                // change all legend font colors to white
+                const legend = document.querySelectorAll('.legend');
+                legend.forEach(legend => {
+                    legend.style.color = 'grey';
+                })
+
+                // change all label font colors to white
+                const label = document.querySelectorAll('.label');
+                label.forEach(label => {
+                    label.style.color = 'grey';
+                });
+            }
+        }
+    </script>
 </body>
 
 </html>
